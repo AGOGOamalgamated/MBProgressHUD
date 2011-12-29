@@ -143,6 +143,25 @@
 	return progress;
 }
 
+#pragma mark - Accessiblity
+
+- (BOOL)isAccessibilityElement
+{
+    return YES;
+}
+
+- (NSString *)accessibilityLabel
+{
+    NSString *accessiblityLabel = [super accessibilityLabel];
+    if (accessiblityLabel.length > 0) {
+        return accessiblityLabel;
+    }
+    else
+    {
+        return HTStr(@"S_Loading", @"Loading", @"");
+    }
+}
+
 #pragma mark -
 #pragma mark Accessor helpers
 
