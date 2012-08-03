@@ -208,7 +208,7 @@
 
 #define PADDING 4.0f
 
-#define LABELFONTSIZE 16.0f
+#define LABELFONTSIZE 14.0f
 #define LABELDETAILSFONTSIZE 12.0f
 
 #pragma mark -
@@ -272,10 +272,10 @@
         self.labelText = nil;
         self.detailsLabelText = nil;
         self.opacity = 0.8f;
-        self.labelFont = [UIFont boldSystemFontOfSize:LABELFONTSIZE];
+        self.labelFont = [UIFont fontWithName:HTBoldFontName size:LABELFONTSIZE];
         self.detailsLabelFont = [UIFont boldSystemFontOfSize:LABELDETAILSFONTSIZE];
         self.xOffset = 0.0f;
-        self.yOffset = 0.0f;
+        self.yOffset = 2.0f;
 		self.dimBackground = NO;
 		self.margin = 20.0f;
 		self.graceTime = 0.0f;
