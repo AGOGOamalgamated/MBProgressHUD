@@ -5,6 +5,7 @@
 //
 
 #import "MBProgressHUD.h"
+#import "HTActivityIndicator.h"
 
 @interface MBProgressHUD ()
 
@@ -194,9 +195,8 @@
     else if (mode == MBProgressHUDModeCustomView && self.customView != nil){
         self.indicator = self.customView;
     } else {
-		self.indicator = [[[UIActivityIndicatorView alloc]
-						   initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
-        [(UIActivityIndicatorView *)indicator startAnimating];
+		self.indicator = [[[HTActivityIndicator alloc] initWithIndicatorStyle:HTActivityIndicatorStyleLargeWhite] autorelease];
+        [(HTActivityIndicator *)indicator startAnimating];
 	}
 	
 	
