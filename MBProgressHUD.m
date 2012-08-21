@@ -582,7 +582,6 @@
 }
 
 - (void)hideUsingAnimation:(BOOL)animated {
-    return;
     // Fade out
     if (animated) {
         [UIView beginAnimations:nil context:NULL];
