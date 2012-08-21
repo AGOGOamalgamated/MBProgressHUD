@@ -169,7 +169,7 @@
 - (void)updateLabelText:(NSString *)newText {
     if (labelText != newText) {
         [labelText release];
-        labelText = [newText copy];
+        labelText = [[newText uppercaseString] copy];
     }
 }
 
@@ -272,7 +272,7 @@
         self.labelText = nil;
         self.detailsLabelText = nil;
         self.opacity = 0.8f;
-        self.labelFont = [UIFont fontWithName:HTBoldFontName size:LABELFONTSIZE];
+        self.labelFont = [UIFont fontWithName:HTFontName size:LABELFONTSIZE];
         self.detailsLabelFont = [UIFont boldSystemFontOfSize:LABELDETAILSFONTSIZE];
         self.xOffset = 0.0f;
         self.yOffset = 2.0f;
@@ -356,14 +356,16 @@
         label.textAlignment = UITextAlignmentCenter;
         label.opaque = NO;
         label.backgroundColor = [UIColor clearColor];
-        label.textColor = [UIColor whiteColor];
+        label.textColor = [UIColor colorWithWhite:218.0/255.0 alpha:0.85];
         label.text = self.labelText;
 		
+        CGFloat indicatorToLabelVerticalMargin = 10.0f;
+        
         // Update HUD size
         if (self.width < (lWidth + 2 * margin)) {
             self.width = lWidth + 2 * margin;
         }
-        self.height = self.height + lHeight + PADDING;
+        self.height = self.height + lHeight + indicatorToLabelVerticalMargin;
 		
         // Move indicator to make room for the label
         indFrame.origin.y -= (floorf(lHeight / 2 + PADDING / 2));
@@ -371,7 +373,7 @@
 		
         // Set the label position and dimensions
         CGRect lFrame = CGRectMake(floorf((frame.size.width - lWidth) / 2) + xOffset,
-                                   floorf(indFrame.origin.y + indFrame.size.height + PADDING),
+                                   floorf(indFrame.origin.y + indFrame.size.height + indicatorToLabelVerticalMargin),
                                    lWidth, lHeight);
         label.frame = lFrame;
 		
@@ -580,6 +582,7 @@
 }
 
 - (void)hideUsingAnimation:(BOOL)animated {
+    return;
     // Fade out
     if (animated) {
         [UIView beginAnimations:nil context:NULL];
@@ -632,7 +635,7 @@
     CGRect boxRect = CGRectMake(roundf((allRect.size.width - self.width) / 2) + self.xOffset,
                                 roundf((allRect.size.height - self.height) / 2) + self.yOffset, self.width, self.height);
 	// Corner radius
-	float radius = 10.0f;
+	float radius = 5.0f;
 	
     CGContextBeginPath(context);
     CGContextSetGrayFillColor(context, 0.0f, self.opacity);
