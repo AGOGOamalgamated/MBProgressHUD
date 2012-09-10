@@ -175,7 +175,7 @@
     else if (mode == MBProgressHUDModeCustomView && self.customView != nil){
         self.indicator = self.customView;
     } else {
-		self.indicator = [[[UIActivityIndicatorView alloc] initWithIndicatorStyle:UIActivityIndicatorStyleLargeWhite] autorelease];
+        self.indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
         [(UIActivityIndicatorView *)indicator startAnimating];
 	}
 	
