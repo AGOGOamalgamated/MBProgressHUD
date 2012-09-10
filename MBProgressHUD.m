@@ -143,25 +143,6 @@
 	return progress;
 }
 
-#pragma mark - Accessiblity
-
-- (BOOL)isAccessibilityElement
-{
-    return YES;
-}
-
-- (NSString *)accessibilityLabel
-{
-    NSString *accessiblityLabel = [super accessibilityLabel];
-    if (accessiblityLabel.length > 0) {
-        return accessiblityLabel;
-    }
-    else
-    {
-        return HTStr(@"S_Loading", @"Loading", @"");
-    }
-}
-
 #pragma mark -
 #pragma mark Accessor helpers
 
@@ -194,7 +175,7 @@
     else if (mode == MBProgressHUDModeCustomView && self.customView != nil){
         self.indicator = self.customView;
     } else {
-		self.indicator = [[[UIActivityIndicatorView alloc] initWithIndicatorStyle:HTActivityIndicatorStyleLargeWhite] autorelease];
+		self.indicator = [[[UIActivityIndicatorView alloc] initWithIndicatorStyle:UIActivityIndicatorStyleLargeWhite] autorelease];
         [(UIActivityIndicatorView *)indicator startAnimating];
 	}
 	
@@ -207,7 +188,7 @@
 
 #define PADDING 4.0f
 
-#define LABELFONTSIZE 14.0f
+#define LABELFONTSIZE 16.0f
 #define LABELDETAILSFONTSIZE 12.0f
 
 #pragma mark -
@@ -271,7 +252,7 @@
         self.labelText = nil;
         self.detailsLabelText = nil;
         self.opacity = 0.8f;
-        self.labelFont = [UIFont fontWithName:HTFontName size:LABELFONTSIZE];
+        self.labelFont = [UIFont boldSystemFontOfSize:LABELFONTSIZE];
         self.detailsLabelFont = [UIFont boldSystemFontOfSize:LABELDETAILSFONTSIZE];
         self.xOffset = 0.0f;
         self.yOffset = 2.0f;
