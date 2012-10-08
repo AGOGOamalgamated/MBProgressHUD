@@ -69,6 +69,28 @@
 
 @synthesize showStarted;
 
+- (void)setCustomView:(UIView *)newCustomView
+{
+    if (customView != newCustomView)
+    {
+        [newCustomView retain];
+        [customView release];
+        customView = newCustomView;
+        
+        void (^updateViews)() = ^{
+            [self updateIndicators];
+            [self setNeedsLayout];
+            [self setNeedsDisplay];
+        };
+        
+        if ([NSThread isMainThread]) {
+            updateViews();
+        } else {
+            dispatch_async(dispatch_get_main_queue(), updateViews);
+        }
+    }
+}
+
 - (void)setMode:(MBProgressHUDMode)newMode {
     // Dont change mode if it wasn't actually changed to prevent flickering
     if (mode && (mode == newMode)) {
